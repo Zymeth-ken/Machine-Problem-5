@@ -1,0 +1,44 @@
+#include <iostream>
+#include <stack>
+using namespace std;
+
+int main() {
+    stack<int> mystack1;
+    stack<int> mystack2;
+    int count;
+
+    cout << "How many product IDs do you want to enter? ";
+    cin >> count;
+
+    // Predefined product IDs
+    int predefinedIDs[] = {10245, 20255, 30356, 12347, 77878, 10255, 12032, 11234};
+    int predefinedCount = sizeof(predefinedIDs) / sizeof(predefinedIDs[0]);
+
+    // Check if the count is valid
+    if (count > predefinedCount) {
+        cout << "You can only enter up to " << predefinedCount << " product IDs." << endl;
+        return 1;
+    }
+
+    
+    for (int x = 0; x < count; x++) {
+        mystack1.push(predefinedIDs[x]);
+    }
+
+    cout << "-----------------------------------" << endl;
+    cout << "Product's ID : " << endl;
+    while (!mystack1.empty()) {
+        cout << mystack1.top() << endl;
+        mystack2.push(mystack1.top());
+        mystack1.pop();
+    }
+
+    cout << "----------------------------------" << endl;
+    cout << "Product's ID2: \n" << endl;
+    while (!mystack2.empty()) {
+        cout << mystack2.top() << endl;
+        mystack2.pop();
+    }
+
+    return 0;
+}
